@@ -1,4 +1,3 @@
-import datetime
 
 from ebaysdk.exception import ConnectionError
 from ebaysdk.finding import Connection
@@ -7,17 +6,22 @@ from wrapper import endpoint
 schema = {
     'required': ['keywords'],
     'properties':  {
-        'keywords': {'type': 'string'}
+        'keywords': {'type': 'string'},
+        'page_size': {'type': 'integer'}
     }
 }
 
 @endpoint(schema)
 def find_items(args):   
     keywords = args.get('keywords')
+    page_size = args.get('page_size')
    
     appid = 'omerdusk-pricing-PRD-008f655c9-7cf91c5a'
-    api = Connection(appid=appid, config_file=None)
-    response = api.execute('findItemsAdvanced', {'keywords': keywords})
+    api = Connection(appid=appid, config_file=None)    
+    paginationInput = {"entriesPerPage": str(page_size), "pageNumber" : "1"} if page_size else None    
+    response = api.execute('findItemsAdvanced', {
+        'keywords': keywords,
+        'paginationInput': paginationInput})
 
     assert(response.reply.ack == 'Success')
     items = []

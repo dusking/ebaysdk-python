@@ -12,8 +12,14 @@ functions:
             keywords:
                 description: The item keywords
                 type: string  
-                required: true  
+                required: true 
+            page_size:
+                description: Specifies the maximum number of entries to return in a single call
+                type: integer  
+                minLength: 1                
+                maxLength: 100
         samples:
             -   args: 
                     keywords: forerunner 645
+                    page_size: 10
                 name: Search for a running watch
