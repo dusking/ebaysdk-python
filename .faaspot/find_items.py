@@ -22,7 +22,7 @@ def find_items(args):
     assert(response.reply.ack == 'Success')
     items = []
     for item in response.reply.searchResult.item:
-        item.append({
+        items.append({
             'title': item.title,
             'image': item.galleryURL,
             'price': item.sellingStatus.currentPrice.value,
