@@ -1,0 +1,19 @@
+
+logo: 'https://www.themoviedb.org/assets/static_cache/2dceae11589334eecd61443249261daf/images/v4/logos/208x226-stacked-green.png'
+
+functions:
+    items:
+        runtime: python2.7
+        handler: find_items.find_items
+        description: "find items"
+        memory: 128
+        timeout: 30                
+        properties: 
+            keywords:
+                description: The item keywords
+                type: string  
+                required: true  
+        samples:
+            -   args: 
+                    keywords: forerunner 645
+                name: Sample
